@@ -1,0 +1,35 @@
+FUNCTION checkSentence(inputSentence) : STRING;
+VAR
+    inputSentence = STRING;
+BEGIN
+        inputSentence := "";
+    RETURN analyzeSentence(inputSentence); 
+END
+
+ALGORITHM checkSentence
+
+VAR
+
+    wordLength,wordCount,vowelCount: INTEGER;   // declearing the varables
+    vowels: ARRAY_OF type[STRING]:= ["A,E,I,O,U,a,e,i,o,u"]  // variable for vowels
+
+    BEGIN
+
+        wordLength:=0;
+        wordCount:=0;
+        vowelCount:=0;
+
+        IF (inputSentence.match(/[a-zA-Z]/)) THEN   // counts the wordlenght if it match a-z
+            wordLength++
+        ELSE_IF (wordLength := 1; OR inputSentence[wordLength - 2].match(/[a-zA-Z]/)) THEN
+            wordCount++                         // if the initial w0rd is containing a-z then wordcount
+        ELSE_IF (inputSentence.has(vowels)) THEN
+            vowelCount++                           // increases the vowel count if it contains a,e,i,o,u
+
+            Write(wordLength);
+            Write(wordCount);
+            Write(vowelCount);
+        END_IF
+
+    END
+END
